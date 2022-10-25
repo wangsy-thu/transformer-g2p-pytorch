@@ -1,6 +1,8 @@
 import json
 import cmudict
 import random
+import os
+from config import HP
 
 
 invalid_chars = ['.', '\'', '-']
@@ -17,6 +19,8 @@ if __name__ == '__main__':
     """
     数据预处理：将带有非法字符的key的条目删除
     """
+    if not os.path.isdir(HP.data_dir):
+        os.mkdir(HP.data_dir)
     cmu_data_dict = cmudict.dict()
     train_dict = {}
     test_dict = {}
@@ -45,7 +49,7 @@ if __name__ == '__main__':
         json.dump(val_dict, fp)
 
     print("""
-    ==========================================
-                Dump Successfully!
-    ==========================================
+==========================================
+            Dump Successfully!
+==========================================
     """)
