@@ -244,7 +244,7 @@ class Transformer(nn.Module):
         decoder_step = 0
         while True:
             if decoder_step == HP.MAX_DECODE_STEP:
-                print("Warming: Reached Max Decoder Step")
+                print("Warning: Reached Max Decoder Step")
                 break
             trg_mask = self.create_trg_mask(trg)  # create target mask
             output, attention = self.decoder(trg, enc_src, trg_mask,
