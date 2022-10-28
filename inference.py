@@ -13,7 +13,7 @@ os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'  # openKMP
 HP.device = 'cpu'
 # new and load model
 model = Transformer()
-checkpoint = torch.load('./model_save/model_48_45000.pth', map_location='cpu')
+checkpoint = torch.load('./model_save/model_65_45000.pth', map_location='cpu')
 model.load_state_dict(checkpoint['model_state_dict'])
 
 while 1:
