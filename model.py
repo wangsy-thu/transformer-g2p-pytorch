@@ -206,20 +206,26 @@ class Transformer(nn.Module):
     @staticmethod
     def create_src_mask(src):
         """
-            [[1, 23, 7, 12, 2],
-             [1, 3, 5, 2, 0]
-             [1, 3, 2, 0, 0]
-             ....
-            ]
+        Pad Mask: 每个 Token 都不应该关注 <pad> Token
+        :param src: source Token (B, max_len)
+        :return: src_mask (B, 1, 1, max_len)
         """
+        # (B, max_len) -mask-> (B, max_len) -expand-> (B, 1, 1, max_len)
         mask = (src != HP.ENCODER_PAD_IDX).unsqueeze(1).unsqueeze(2).to(HP.device)
+        # 这里在中间插入两个维度，目的是充分利用广播机制
         return mask
 
     @staticmethod
     def create_trg_mask(trg):  # trg shape: [N, max_seq_len]
+        """
+        对于每个 Token, 都不应该关注靠后的
+        :param trg:
+        :return:
+        """
         trg_len = trg.size(1)
         pad_mask = (trg != HP.DECODER_PAD_IDX).unsqueeze(1).unsqueeze(2).to(HP.device)
         sub_mask = torch.tril(torch.ones(size=(trg_len, trg_len), dtype=torch.uint8)).bool().to(HP.device)
+        # (B, 1, 1, max_len) & (B, H, max_len, max_len) -> (B, H, max_len, max_len)
         trg_mask = pad_mask & sub_mask
         return trg_mask
 

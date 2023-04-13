@@ -36,12 +36,12 @@ class Hyperparameter:
     phoneme_size = len(phonemes_char2id)
     MAX_DECODE_STEP = 50
 
-    ENCODER_SOS_IDX = graphemes_char2id['<s>']
-    ENCODER_EOS_IDX = graphemes_char2id['</s>']
-    ENCODER_PAD_IDX = graphemes_char2id['<pad>']
-    DECODER_SOS_IDX = phonemes_char2id['<s>']
-    DECODER_EOS_IDX = phonemes_char2id['</s>']
-    DECODER_PAD_IDX = phonemes_char2id['<pad>']
+    ENCODER_SOS_IDX = graphemes_char2id['<s>']  # 1
+    ENCODER_EOS_IDX = graphemes_char2id['</s>']  # 2
+    ENCODER_PAD_IDX = graphemes_char2id['<pad>']  # 0
+    DECODER_SOS_IDX = phonemes_char2id['<s>']  # 1
+    DECODER_EOS_IDX = phonemes_char2id['</s>']  # 2
+    DECODER_PAD_IDX = phonemes_char2id['<pad>']  # 0
 
     # ################################################################
     #                             Experiment

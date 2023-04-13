@@ -12,6 +12,7 @@ phonemes = ["<pad>", "<s>", "</s>"] + ['AA0', 'AA1', 'AA2', 'AE0', 'AE1', 'AE2',
                                        'UW0', 'UW1', 'UW2', 'V', 'W', 'Y', 'Z', 'ZH']
 
 # <s> JH AE1 K </s>
+# Build <Token, id>, <Char, id>, <id, Token>, <id, Char> Indices
 graphemes_id2char = dict(enumerate(graphemes))  # {0:'<pad>', 25: 'k'...}
 phonemes_id2char = dict(enumerate(phonemes))  # {0:'<pad>', 23: 'JH', 24:'AH1'}
 graphemes_char2id = dict((v, k) for k, v in enumerate(graphemes))
